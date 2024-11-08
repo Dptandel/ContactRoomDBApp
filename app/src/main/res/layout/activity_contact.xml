@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingVertical="8dp"
+        android:paddingVertical="16dp"
         android:text="Create New Contact"
         android:textColor="@color/black"
         android:textSize="22sp"

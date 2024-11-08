@@ -19,9 +19,10 @@ class ContactActivity : AppCompatActivity() {
         binding = ActivityContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize the database
-        db = Room.databaseBuilder(this, AppDatabase::class.java, "contacts")
-            .allowMainThreadQueries().build()
+        /*// Initialize the database
+        db = Room.databaseBuilder(this, AppDatabase::class.java, "contacts").allowMainThreadQueries().build()*/
+
+        db = AppDatabase.getDatabase(this)
 
         // Create New Contact and Save it
         binding.btnSave.setOnClickListener {
@@ -40,10 +41,17 @@ class ContactActivity : AppCompatActivity() {
         // Insert a new contact
         db.contactDao().insertContact(contact)
 
+        //onBackPressedDispatcher.onBackPressed()
+
         // Clear the input fields
         binding.edtName.text.clear()
         binding.edtContact.text.clear()
         binding.edtEmail.text.clear()
+
+        val intent = Intent()
+        intent.putExtra("msg", "Contact Saved Successfully")
+        setResult(RESULT_OK, intent)
+        finish()
 
         Toast.makeText(this, "Contact Saved Successfully", Toast.LENGTH_SHORT).show()
 
