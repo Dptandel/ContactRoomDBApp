@@ -21,4 +21,7 @@ interface ContactDao {
 
     @Query("SELECT * FROM contacts")
     fun getAllContacts(): List<Contact>
+
+    @Query("SELECT * FROM contacts WHERE id = :id")
+    fun getContactById(id: Int): Contact
 }
